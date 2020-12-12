@@ -1,3 +1,4 @@
+import 'package:event_app/pages/home_screen.dart';
 import 'package:event_app/pages/splash_screen.dart';
 import 'package:event_app/size_config.dart';
 import 'package:event_app/style.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
           child: MaterialApp(
             theme: AppTheme.lightTheme,
             debugShowCheckedModeBanner: false,
-            home: SplashScreen(),
+            home: HomeScreen(),
             routes: {
               SplashScreen.routeName: (ctx) => SplashScreen(),
             },
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
 
 void setupSystemSettings() {
   // this will change color of status bar and system navigation bar
-  SystemChrome.setSystemUIOverlayStyle(AppTheme.systemUiOverlayStyle);
+  SystemChrome.setSystemUIOverlayStyle(AppTheme.systemUiDark);
 
   // this will prevent change oriontation
   SystemChrome.setPreferredOrientations([

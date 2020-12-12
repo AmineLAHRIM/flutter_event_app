@@ -1,3 +1,4 @@
+import 'package:event_app/style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -55,7 +56,7 @@ class SplashScreen extends StatelessWidget {
                                       margin: EdgeInsets.all(0),
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(16)),
+                                              BorderRadius.circular(AppTheme.radius)),
                                       child: Container(
                                         width: double.infinity,
                                         height: double.infinity,
@@ -126,7 +127,7 @@ class SplashScreen extends StatelessWidget {
                               margin: EdgeInsets.all(0),
                               clipBehavior: Clip.antiAlias,
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(16)),
+                                  borderRadius: BorderRadius.circular(AppTheme.radius)),
                               color: Colors.white,
                               child: Stack(
                                 children: [

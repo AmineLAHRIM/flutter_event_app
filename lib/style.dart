@@ -16,23 +16,26 @@ class AppTheme {
   static const Color subTitleTextColor = Color(0xFF707586);
   static const Color bg = Color(0xFFFFFFFF);
   static const Color secondaryBg = Color(0xFFF5F8FD);
-  static const Color shadow = Color(0xFFEDF1F7);
+  static Color shadow = Color(0xFF191818);
   static const Color borderCard = Color(0xFFEBF0F9);
   static const Color fb = Color(0xFF0041A8);
   static const Color twitter = Color(0xFF42AAFF);
   static const Color google = Color(0xFFF2F8FF);
   static const Color footertext = Color(0xFFC5CEE0);
+  static const double radius = 10.0;
 
   static final ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: AppTheme.bg,
     backgroundColor: AppTheme.bg,
     brightness: Brightness.light,
+    primaryColor: AppTheme.headlineTextColor,
     textTheme: lightTextTheme,
   );
 
   static final ThemeData darkTheme = ThemeData(
     scaffoldBackgroundColor: Colors.black,
     brightness: Brightness.dark,
+    primaryColor: AppTheme.bg,
     textTheme: darkTextTheme,
   );
 
@@ -131,8 +134,15 @@ class AppTheme {
     fontSize: 12,
   );
 
-  static final SystemUiOverlayStyle systemUiOverlayStyle= SystemUiOverlayStyle(
-      systemNavigationBarColor: AppTheme.headlineTextColor,
-      statusBarColor: AppTheme.headlineTextColor
+  static final SystemUiOverlayStyle systemUiDark = SystemUiOverlayStyle(
+    systemNavigationBarColor: AppTheme.headlineTextColor,
+    statusBarColor: AppTheme.headlineTextColor,
+    statusBarIconBrightness: Brightness.light,
+  );
+
+  static final SystemUiOverlayStyle systemUiLight = SystemUiOverlayStyle(
+    systemNavigationBarColor: Colors.white,
+    statusBarColor: Colors.white,
+    statusBarIconBrightness: Brightness.dark,
   );
 }
