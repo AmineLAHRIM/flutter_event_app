@@ -1,5 +1,10 @@
+import 'package:event_app/pages/event_detail_screen.dart';
 import 'package:event_app/pages/home_screen.dart';
 import 'package:event_app/pages/splash_screen.dart';
+import 'package:event_app/services/EventService.dart';
+import 'package:event_app/services/TicketService.dart';
+import 'package:event_app/services/UserEventDetailService.dart';
+import 'package:event_app/services/UserService.dart';
 import 'package:event_app/size_config.dart';
 import 'package:event_app/style.dart';
 import 'package:flutter/material.dart';
@@ -19,13 +24,20 @@ class MyApp extends StatelessWidget {
         SizeConfig().init(constraints, orientation);
         setupSystemSettings();
         return MultiProvider(
-          providers: [],
+          providers: [
+            ChangeNotifierProvider.value(value: UserService()),
+            ChangeNotifierProvider.value(value: EventService()),
+            ChangeNotifierProvider.value(value: TicketService()),
+            ChangeNotifierProvider.value(value: UserEventDetailService()),
+          ],
           child: MaterialApp(
             theme: AppTheme.lightTheme,
             debugShowCheckedModeBanner: false,
-            home: HomeScreen(),
+            home: SplashScreen(),
             routes: {
               SplashScreen.routeName: (ctx) => SplashScreen(),
+              HomeScreen.routeName: (ctx) => HomeScreen(),
+              EventDetailScreen.routeName: (ctx) => EventDetailScreen(),
             },
           ),
         );
@@ -33,7 +45,6 @@ class MyApp extends StatelessWidget {
     });
   }
 }
-
 
 void setupSystemSettings() {
   // this will change color of status bar and system navigation bar

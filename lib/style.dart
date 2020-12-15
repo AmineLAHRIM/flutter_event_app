@@ -145,4 +145,10 @@ class AppTheme {
     statusBarColor: Colors.white,
     statusBarIconBrightness: Brightness.dark,
   );
+
+  static final SystemUiOverlayStyle systemUiTrans = SystemUiOverlayStyle(
+    systemNavigationBarColor: Colors.white,
+    statusBarColor: Colors.transparent,
+    statusBarIconBrightness: Brightness.dark,
+  );
 }

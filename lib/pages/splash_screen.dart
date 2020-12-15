@@ -1,6 +1,8 @@
+import 'package:event_app/pages/home_screen.dart';
 import 'package:event_app/style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -55,8 +57,8 @@ class SplashScreen extends StatelessWidget {
                                       elevation: 0,
                                       margin: EdgeInsets.all(0),
                                       shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(AppTheme.radius)),
+                                          borderRadius: BorderRadius.circular(
+                                              AppTheme.radius)),
                                       child: Container(
                                         width: double.infinity,
                                         height: double.infinity,
@@ -127,7 +129,8 @@ class SplashScreen extends StatelessWidget {
                               margin: EdgeInsets.all(0),
                               clipBehavior: Clip.antiAlias,
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(AppTheme.radius)),
+                                  borderRadius:
+                                      BorderRadius.circular(AppTheme.radius)),
                               color: Colors.white,
                               child: Stack(
                                 children: [
@@ -160,9 +163,11 @@ class SplashScreen extends StatelessWidget {
                                             Expanded(
                                               flex: 30,
                                               child: Container(
-                                                alignment: Alignment.centerRight,
+                                                alignment:
+                                                    Alignment.centerRight,
                                                 child: SvgPicture.asset(
-                                                    'assets/images/icon_next.svg',),
+                                                  'assets/images/icon_next.svg',
+                                                ),
                                               ),
                                             )
                                           ],
@@ -175,13 +180,21 @@ class SplashScreen extends StatelessWidget {
                                       color: Colors.transparent,
                                       child: InkWell(
                                         splashFactory: InkRipple.splashFactory,
-                                        onTap: () => null,
+                                        onTap: () {
+                                          Navigator.pushNamed(
+                                                  context, HomeScreen.routeName)
+                                              .then((value) {
+                                            SystemChrome
+                                                .setSystemUIOverlayStyle(
+                                                    AppTheme.systemUiDark);
+                                          });
+                                        },
                                       ),
                                     ),
                                   ),
                                 ],
                               )),
-                        )
+                        ),
                       ],
                     ),
                   ),
