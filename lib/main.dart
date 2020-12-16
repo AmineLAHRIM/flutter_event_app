@@ -1,4 +1,5 @@
 import 'package:event_app/pages/event_detail_screen.dart';
+import 'package:event_app/pages/event_home_screen.dart';
 import 'package:event_app/pages/home_screen.dart';
 import 'package:event_app/pages/splash_screen.dart';
 import 'package:event_app/services/EventService.dart';
@@ -33,11 +34,12 @@ class MyApp extends StatelessWidget {
           child: MaterialApp(
             theme: AppTheme.lightTheme,
             debugShowCheckedModeBanner: false,
-            home: SplashScreen(),
+            home: EventHomeScreen(),
             routes: {
               SplashScreen.routeName: (ctx) => SplashScreen(),
               HomeScreen.routeName: (ctx) => HomeScreen(),
               EventDetailScreen.routeName: (ctx) => EventDetailScreen(),
+              EventHomeScreen.routeName: (ctx) => EventHomeScreen(),
             },
           ),
         );

@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 
 class EventService extends ChangeNotifier {
   List<Event> items = [];
+  List<DateTime> dates = [];
 
   Future<List<Event>> findAll() async {
     var response = await http.get(Constant.REST_URL + '/event/');
@@ -26,11 +27,10 @@ class EventService extends ChangeNotifier {
     }
     Event latestEventNear = items.firstWhere((element) => element.near == true);
     return latestEventNear;
-
   }
 
   Future<Event> findById(int id) async {
-    print('id==findById'+id.toString());
+    print('id==findById' + id.toString());
 
     var response = await http.get(Constant.REST_URL + '/event/' + id.toString());
 
@@ -81,5 +81,17 @@ class EventService extends ChangeNotifier {
     } else {
       throw Exception('No Data Found');
     }
+  }
+
+  List<DateTime> allDates() {
+    DateTime dateTime = DateTime.now();
+    int numberDays = 40;
+    if (dates == null || dates.isEmpty) {
+      for (int i = 0; i < numberDays; i++) {
+        DateTime currentDateTime = dateTime.add(Duration(days: i - 2));
+        dates.add(currentDateTime);
+      }
+    }
+    return dates;
   }
 }

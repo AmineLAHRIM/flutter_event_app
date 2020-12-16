@@ -17,7 +17,7 @@ class AppTheme {
   static const Color bg = Color(0xFFFFFFFF);
   static const Color secondaryBg = Color(0xFFF5F8FD);
   static Color shadow = Color(0xFF191818);
-  static const Color borderCard = Color(0xFFEBF0F9);
+  static  Color borderCard = Color(0xFF707070).withOpacity(0.5);
   static const Color fb = Color(0xFF0041A8);
   static const Color twitter = Color(0xFF42AAFF);
   static const Color google = Color(0xFFF2F8FF);
@@ -126,12 +126,15 @@ class AppTheme {
     color: AppTheme.headlineTextColor,
     fontFamily: "Poppins",
     fontSize: 12,
+    letterSpacing: 1,
   );
 
   static final TextStyle _bodyText2 = TextStyle(
     color: AppTheme.subTitleTextColor,
     fontFamily: "Poppins",
     fontSize: 12,
+    letterSpacing: 1,
+
   );
 
   static final SystemUiOverlayStyle systemUiDark = SystemUiOverlayStyle(

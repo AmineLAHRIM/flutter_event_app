@@ -12,6 +12,7 @@ class Event {
   String address;
   DateTime date;
   String imageUrl;
+  double price;
   String description;
   bool near;
   bool deleted;

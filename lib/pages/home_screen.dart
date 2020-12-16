@@ -71,13 +71,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Container(
                   width: double.infinity,
                   height: double.infinity,
-                  margin: EdgeInsets.symmetric(vertical: 0, horizontal: 16),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Flexible(
                         flex: 20,
-                        child: SvgPicture.asset('assets/images/menu.svg'),
+                        child: InkWell(
+                          splashFactory: InkRipple.splashFactory,
+                          onTap: () => null,
+                          child: Container(
+                            width: double.infinity,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.only(left: 16),
+                            child: SvgPicture.asset('assets/images/menu.svg'),
+                          ),
+                        ),
                       ),
                       Flexible(
                         flex: 60,
@@ -94,9 +102,18 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Flexible(
                         flex: 20,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 0),
-                          child: SvgPicture.asset('assets/images/icon_notification_fill.svg'),
+                        child: InkWell(
+                          splashFactory: InkRipple.splashFactory,
+                          onTap: () => null,
+                          child: Container(
+                            width: double.infinity,
+                            alignment: Alignment.centerRight,
+                            padding: EdgeInsets.only(right: 16),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 0),
+                              child: SvgPicture.asset('assets/images/icon_notification_fill.svg'),
+                            ),
+                          ),
                         ),
                       ),
                     ],
@@ -113,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'Join with \nupcoming events.',
-                        style: Theme.of(context).textTheme.headline4,
+                        style: Theme.of(context).textTheme.headline3,
                       )),
                 ),
               ),
