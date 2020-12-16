@@ -2,6 +2,8 @@ import 'package:align_positioned/align_positioned.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:event_app/items/popular_event_item.dart';
 import 'package:event_app/models/event.dart';
+import 'package:event_app/pages/event_detail_screen.dart';
+import 'package:event_app/pages/event_home_screen.dart';
 import 'package:event_app/services/EventService.dart';
 import 'package:event_app/style.dart';
 import 'package:flutter/material.dart';
@@ -198,7 +200,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                               color: Colors.transparent,
                                               child: InkWell(
                                                 splashFactory: InkRipple.splashFactory,
-                                                onTap: () => null,
+                                                splashColor: AppTheme.shadow.withOpacity(0.1),
+                                                onTap: () {
+                                                  Navigator.pushNamed(context, EventHomeScreen.routeName);
+                                                },
                                               ),
                                             ),
                                           ),
@@ -243,15 +248,31 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             Flexible(
                               flex: 20,
-                              child: FractionallySizedBox(
-                                heightFactor: 0.7,
-                                child: FittedBox(
-                                  fit: BoxFit.scaleDown,
-                                  child: Text(
-                                    'See all',
-                                    style: Theme.of(context).textTheme.bodyText2,
+                              child: Stack(
+                                children: [
+                                  FractionallySizedBox(
+                                    heightFactor: 0.7,
+                                    child: FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                      child: Text(
+                                        'See all',
+                                        style: Theme.of(context).textTheme.bodyText2,
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                  Positioned.fill(
+                                    child: Material(
+                                      color: Colors.transparent,
+                                      child: InkWell(
+                                        splashFactory: InkRipple.splashFactory,
+                                        splashColor: AppTheme.shadow.withOpacity(0.1),
+                                        onTap: () {
+                                          Navigator.pushNamed(context, EventHomeScreen.routeName);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
@@ -305,15 +326,31 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             Flexible(
                               flex: 20,
-                              child: FractionallySizedBox(
-                                heightFactor: 0.7,
-                                child: FittedBox(
-                                  fit: BoxFit.scaleDown,
-                                  child: Text(
-                                    'See all',
-                                    style: Theme.of(context).textTheme.bodyText2,
+                              child: Stack(
+                                children: [
+                                  FractionallySizedBox(
+                                    heightFactor: 0.7,
+                                    child: FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                      child: Text(
+                                        'See all',
+                                        style: Theme.of(context).textTheme.bodyText2,
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                  Positioned.fill(
+                                    child: Material(
+                                      color: Colors.transparent,
+                                      child: InkWell(
+                                        splashFactory: InkRipple.splashFactory,
+                                        splashColor: AppTheme.shadow.withOpacity(0.1),
+                                        onTap: () {
+                                          Navigator.pushNamed(context, EventHomeScreen.routeName);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
@@ -489,7 +526,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                           child: InkWell(
                                             splashFactory: InkRipple.splashFactory,
                                             splashColor: AppTheme.shadow.withOpacity(0.1),
-                                            onTap: () => null,
+                                            onTap: () {
+                                              Navigator.pushNamed(context, EventDetailScreen.routeName,arguments: firstNearEvent.id);
+                                            },
                                           ),
                                         ),
                                       ),

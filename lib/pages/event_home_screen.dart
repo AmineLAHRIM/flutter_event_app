@@ -1,6 +1,7 @@
 import 'package:align_positioned/align_positioned.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:event_app/models/event.dart';
+import 'package:event_app/pages/event_detail_screen.dart';
 import 'package:event_app/services/EventService.dart';
 import 'package:event_app/style.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,6 @@ class _EventHomeScreenState extends State<EventHomeScreen> {
   List<Event> events = [];
   List<DateTime> dates = [];
   var _isInit = true;
-
 
   @override
   void initState() {
@@ -46,6 +46,13 @@ class _EventHomeScreenState extends State<EventHomeScreen> {
     }
     _isInit = false;
     super.didChangeDependencies();
+  }
+
+  void onSelectedDate(DateTime currentDateTime) {
+    setState(() {
+      selectedDateTime = currentDateTime;
+      print('setState selectedDateTime' + selectedDateTime.day.toString());
+    });
   }
 
   @override
@@ -129,25 +136,26 @@ class _EventHomeScreenState extends State<EventHomeScreen> {
                 child: Container(
                   width: double.infinity,
                   height: double.infinity,
-                  margin: EdgeInsets.symmetric(vertical: 16, horizontal: 0),
-                  child: ListView.builder(
-                    padding: EdgeInsets.only(left: 16),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: dates.length,
-                    itemBuilder: (context, index) {
-                      DateTime currentDateTime = dates[index];
-                      return DateItem(currentDateTime: currentDateTime,onSelectDateTime: (){
-                        setState(() {
-                          selectedDateTime=currentDateTime;
-                          print('setState selectedDateTime'+selectedDateTime.day.toString());
-                        });
-                      },);
-                    },
+                  margin: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+                  child: FractionallySizedBox(
+                    heightFactor: 0.6,
+                    child: ListView.builder(
+                      padding: EdgeInsets.only(left: 16),
+                      scrollDirection: Axis.horizontal,
+                      itemCount: dates.length,
+                      itemBuilder: (context, index) {
+                        DateTime currentDateTime = dates[index];
+                        return DateItem(
+                          currentDateTime: currentDateTime,
+                          onSelectDateTime: ()=> onSelectedDate(currentDateTime),
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
               Expanded(
-                flex: 67,
+                flex: 57,
                 child: Container(
                   width: double.infinity,
                   height: double.infinity,
@@ -192,7 +200,7 @@ class _EventHomeScreenState extends State<EventHomeScreen> {
                         child: Container(
                           width: double.infinity,
                           height: double.infinity,
-                          margin: EdgeInsets.only(top: 32),
+                          margin: EdgeInsets.only(top: 16),
                           child: ListView.builder(
                             padding: EdgeInsets.only(left: 16, right: 16, top: 0),
                             itemCount: events.length,
@@ -208,9 +216,9 @@ class _EventHomeScreenState extends State<EventHomeScreen> {
                   ),
                 ),
               ),
-              Container(
-                height: 55,
+              Expanded(flex: 10,child: Container(
                 width: double.infinity,
+                height: double.infinity,
                 margin: EdgeInsets.fromLTRB(16, 0, 16, 16),
                 child: Container(
                   width: double.infinity,
@@ -300,7 +308,7 @@ class _EventHomeScreenState extends State<EventHomeScreen> {
                     ],
                   ),
                 ),
-              ),
+              ),)
             ],
           ),
         ),
@@ -310,9 +318,8 @@ class _EventHomeScreenState extends State<EventHomeScreen> {
 }
 
 DateTime selectedDateTime = DateTime.now();
+
 class DateItem extends StatelessWidget {
-
-
   const DateItem({
     Key key,
     @required this.currentDateTime,
@@ -380,7 +387,7 @@ class DateItem extends StatelessWidget {
                   color: Colors.transparent,
                   child: InkWell(
                     splashFactory: InkRipple.splashFactory,
-                    onTap: () => onSelectDateTime,
+                    onTap: onSelectDateTime,
                   ),
                 ),
               ),
@@ -526,7 +533,9 @@ class NearEventItem extends StatelessWidget {
                   child: InkWell(
                     splashFactory: InkRipple.splashFactory,
                     splashColor: AppTheme.shadow.withOpacity(0.1),
-                    onTap: () => null,
+                    onTap: () {
+                      Navigator.pushNamed(context, EventDetailScreen.routeName,arguments: currentEvent.id);
+                    },
                   ),
                 ),
               ),

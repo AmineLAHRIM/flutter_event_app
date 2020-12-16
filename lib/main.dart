@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
           child: MaterialApp(
             theme: AppTheme.lightTheme,
             debugShowCheckedModeBanner: false,
-            home: EventHomeScreen(),
+            home: SplashScreen(),
             routes: {
               SplashScreen.routeName: (ctx) => SplashScreen(),
               HomeScreen.routeName: (ctx) => HomeScreen(),
