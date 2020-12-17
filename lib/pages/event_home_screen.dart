@@ -37,7 +37,7 @@ class _EventHomeScreenState extends State<EventHomeScreen> {
       eventService.findAll().then((value) {
         setState(() {
           events = value;
-          //events = value.where((element) => element.near == true).toList();
+          events = value.where((element) => element.near == true).toList();
         });
       });
       setState(() {
@@ -51,7 +51,13 @@ class _EventHomeScreenState extends State<EventHomeScreen> {
   void onSelectedDate(DateTime currentDateTime) {
     setState(() {
       selectedDateTime = currentDateTime;
-      print('setState selectedDateTime' + selectedDateTime.day.toString());
+    });
+    EventService eventService = Provider.of<EventService>(context);
+    eventService.findAll().then((value) {
+      setState(() {
+        events = value;
+        events = value.where((element) => element.near == true && isSameDay(element.date)).toList();
+      });
     });
   }
 
@@ -317,7 +323,7 @@ class _EventHomeScreenState extends State<EventHomeScreen> {
   }
 }
 
-DateTime selectedDateTime = DateTime.now();
+DateTime selectedDateTime;
 
 class DateItem extends StatelessWidget {
   const DateItem({
@@ -400,6 +406,9 @@ class DateItem extends StatelessWidget {
 }
 
 bool isSameDay(DateTime dateTime) {
+  if(selectedDateTime==null){
+    return false;
+  }
   return selectedDateTime.year == dateTime.year && selectedDateTime.month == dateTime.month && selectedDateTime.day == dateTime.day;
 }
 
